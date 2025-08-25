@@ -7,7 +7,8 @@ let CHAT_ID = "6296434694"
 
 app.get("/", async (req, res) => {
   let ip = req.headers["x-forwarded-for"]?.split(",")[0] || req.socket.remoteAddress
-  let message = `Request baru\nIP: ${ip}\nUA: ${req.headers["user-agent"]}`
+  let ua = req.headers["user-agent"]
+  let message = `Request baru\nIP: ${ip}\nUA: ${ua}`
 
   try {
     await axios.post(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
@@ -16,7 +17,11 @@ app.get("/", async (req, res) => {
     })
   } catch (err) {}
 
-  res.json({ ip: ip })
+  if (req.query.format === "json") {
+    res.json({ ip: ip })
+  } else {
+    res.send(ip)
+  }
 })
 
 let PORT = 3000
