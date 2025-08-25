@@ -1,0 +1,21 @@
+{
+  "name": "ip-logger-telegram",
+  "version": "1.0.0",
+  "description": "API sederhana untuk ambil IP client dan forward ke Telegram",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "express",
+    "ip",
+    "telegram",
+    "logger"
+  ],
+  "author": "kamu",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.7.0",
+    "express": "^4.19.0"
+  }
+}
